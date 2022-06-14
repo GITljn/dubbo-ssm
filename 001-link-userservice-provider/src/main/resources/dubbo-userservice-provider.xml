@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+<!--    声明服务提供者名称：必须保证服务名称的唯一性，它的名称是dubbo内部使用的唯一标识-->
+    <dubbo:application name="001-link-userservice-provider"/>
+
+<!--    访问服务协议的名称及端口号，dubbo官方推荐使用的是dubbo协议，默认的端口号为20880-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+<!--    暴露服务接口及对应的实现类对象，registry="N/A"表示直连，不使用注册中心-->
+    <dubbo:service interface="com.bjpowernode.dubbo.service.UserService" ref="userService" registry="N/A"/>
+
+<!--    将接口的实现类对象加载到spring容器中-->
+    <bean id="userService" class="com.bjpowernode.dubbo.service.impl.UserServiceImpl"/>
+</beans>
